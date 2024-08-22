@@ -7,9 +7,10 @@ export default app.get("/", async (c) => {
 	const { title, subTitle, siteTitle } = c.req.query();
 
 	const fontFamily = "Noto Sans JP";
-	const fontNormal = await fetchFont(siteTitle, fontFamily, 400);
+	const text = `${title??''}${subTitle??''}${siteTitle??''}`;
+	const fontNormal = await fetchFont(text, fontFamily, 400);
 	const fontBold = await fetchFont(
-		siteTitle + title + subTitle,
+		text,
 		fontFamily,
 		700,
 	);
@@ -44,7 +45,7 @@ export default app.get("/", async (c) => {
 						flex: 1,
             flexDirection: "column",
 						color: "#222",
-						fontSize: "82",
+						fontSize: "80px",
 						paddingInline: "1rem",
 						boxSizing: "border-box",
 						justifySelf: "center",
@@ -63,10 +64,6 @@ export default app.get("/", async (c) => {
 							key={word}
 							style={{
 								display: "flex",
-								overflow: "hidden",
-								whiteSpace: "nowrap",
-								textOverflow: "ellipsis",
-								fontSize: "inherit",
 							}}
 						>
 							{word}
@@ -77,7 +74,7 @@ export default app.get("/", async (c) => {
 					style={{
 						flexBasis: "20vh",
 						color: "#444",
-						fontSize: "40",
+						fontSize: "40px",
 						boxSizing: "border-box",
 						display: "flex",
 						justifyContent: "center",
