@@ -7,14 +7,12 @@ const app = new Hono();
 export default app.get("/", async (c) => {
   // Parameters for your portfolio OGP
   const { 
-    title = "kbkn3 Portfolio", 
-    projectName = "",
-    category = "Web Development",
-    userName = "kbkn3"
+    userName = "kbkn3",
+    title = "PORTFOLIO"
   } = c.req.query();
 
   const fontFamily = "Open Sans";
-  const text = `${title}${projectName}${category}${userName}Portfolio`;
+  const text = `${userName}${title}`;
   
   // Fetch fonts with proper text content
   const fontNormal = await fetchFont(text, fontFamily, 400);
@@ -96,7 +94,7 @@ export default app.get("/", async (c) => {
             textTransform: "uppercase",
           }}
         >
-          PORTFOLIO
+          {title}
         </div>
       </div>
     </div>,
